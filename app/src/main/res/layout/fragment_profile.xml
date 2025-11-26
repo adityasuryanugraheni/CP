@@ -1,16 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    tools:context=".ProfileFragment">
+    android:gravity="center_horizontal"
+    android:background="@drawable/bg_profile">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/profildua"
+        android:contentDescription="profile" />
+
+    <!-- PROFILE TEXT -->
     <TextView
-        android:id="@+id/textViewProfile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/txtProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PROFILE"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textColor="#003366"/>
 
-</FrameLayout>
+    <!-- Name Field -->
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:background="@drawable/editteks_profile"
+        android:text="Yumna Anky Prita"
+        android:enabled="false"/>  <!-- DIBUAT TIDAK AKTIF -->
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:background="@drawable/editteks_profile"
+        android:text="yumna123"
+        android:inputType="textPassword"
+        android:enabled="false"/> <!-- DIBUAT TIDAK AKTIF -->
+
+    <!-- Logout Button -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:text="Logout"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FF0000"/>
+
+    <!-- Space before nav -->
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="50dp"/>
+
+</LinearLayout>
