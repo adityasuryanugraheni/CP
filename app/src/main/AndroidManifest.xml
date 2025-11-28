@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CP">
         <activity
-            android:name=".Task"
-            android:exported="false" />
-        <activity
             android:name=".WriteActivity"
             android:exported="false" />
         <activity
@@ -22,10 +19,12 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".LogoActivity"
-            android:exported="true">
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
