@@ -1,4 +1,5 @@
 package com.example.cp
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -37,9 +38,16 @@ class LoginActivity : AppCompatActivity() {
             // Cek apakah username ada dan password benar
             if (validUsers[username] == password) {
 
-                // Jika login sukses → pindah ke MainActivity
+                // SIMPAN DATA LOGIN KE SHAREDPREFERENCES
+                val sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
+                sharedPref.edit().apply {
+                    putString("USERNAME", username)
+                    putString("PASSWORD", password)
+                    apply()
+                }
+
+                // Pindah ke MainActivity
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("USERNAME", username)
                 startActivity(intent)
 
                 Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
@@ -48,6 +56,6 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Username atau password salah", Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-}
+        }   // ⬅️ ini penutup btnLogin.setOnClickListener
+    }       // ⬅️ ini penutup onCreate
+}           // ⬅️ ini penutup class

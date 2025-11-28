@@ -10,9 +10,9 @@
     <!-- Profile Image -->
     <ImageView
         android:id="@+id/imgProfile"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/profildua"
         android:contentDescription="profile" />
 
@@ -27,7 +27,6 @@
         android:layout_marginTop="20dp"
         android:textColor="#003366"/>
 
-    <!-- Name Field -->
     <EditText
         android:id="@+id/edtName"
         android:layout_width="300dp"
@@ -35,8 +34,12 @@
         android:layout_marginTop="30dp"
         android:padding="10dp"
         android:background="@drawable/editteks_profile"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
         android:text="Yumna Anky Prita"
-        android:enabled="false"/>  <!-- DIBUAT TIDAK AKTIF -->
+        android:focusable="false"
+        android:clickable="false"
+        />
 
     <EditText
         android:id="@+id/edtPassword"
@@ -47,14 +50,19 @@
         android:background="@drawable/editteks_profile"
         android:text="yumna123"
         android:inputType="textPassword"
-        android:enabled="false"/> <!-- DIBUAT TIDAK AKTIF -->
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:focusable="false"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:longClickable="false" />
 
     <!-- Logout Button -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="90dp"
         android:text="Logout"
         android:textColor="#FFFFFF"
         android:backgroundTint="#FF0000"/>
