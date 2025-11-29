@@ -8,7 +8,6 @@ import com.example.cp.databinding.ItemPrivateBinding
 class PrivateAdapter(
     private val list: List<PrivateModel>
 ) : RecyclerView.Adapter<PrivateAdapter.PrivateViewHolder>() {
-
     inner class PrivateViewHolder(val binding: ItemPrivateBinding)
         : RecyclerView.ViewHolder(binding.root)
 

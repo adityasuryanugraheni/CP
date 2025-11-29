@@ -50,7 +50,6 @@ class TaskAdapter(
                 }
                 .setNegativeButton("No", null)
                 .show()
-
             true
         }
     }

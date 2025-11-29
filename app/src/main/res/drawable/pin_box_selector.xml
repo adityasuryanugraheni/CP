@@ -9,7 +9,6 @@
             <stroke android:width="2dp" android:color="#8A4DFF"/>
         </shape>
     </item>
-
     <!-- Tidak fokus -->
     <item>
         <shape>

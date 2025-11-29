@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cp.databinding.FragmentPrivateBinding
 
 class PrivateFragment : Fragment() {
-
     private lateinit var binding: FragmentPrivateBinding
     private lateinit var adapter: PrivateAdapter
 

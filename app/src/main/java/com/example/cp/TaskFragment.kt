@@ -64,7 +64,6 @@ class TaskFragment : Fragment() {
     private fun loadTasks(): MutableList<TaskModel> {
         val prefs = requireContext().getSharedPreferences("task_prefs", Context.MODE_PRIVATE)
         val json = prefs.getString("tasks", null) ?: return mutableListOf()
-
         val type = object : TypeToken<MutableList<TaskModel>>() {}.type
         return Gson().fromJson(json, type)
     }

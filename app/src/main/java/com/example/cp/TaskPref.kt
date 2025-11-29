@@ -5,7 +5,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 object TaskPref {
-
     private const val PREF_NAME = "task_pref"
     private const val KEY_TASK = "task_list"
 

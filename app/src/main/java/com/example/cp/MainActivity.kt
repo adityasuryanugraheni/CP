@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         // LISTENER NAVBAR (PRIVATE → PIN)
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-
                 R.id.privateFragment -> {
                     showPinDialog()
                     return@setOnItemSelectedListener true
