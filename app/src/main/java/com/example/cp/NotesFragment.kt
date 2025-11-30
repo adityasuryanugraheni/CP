@@ -36,17 +36,32 @@ class NotesFragment : Fragment() {
                 val title = data?.getStringExtra("title") ?: ""
                 val content = data?.getStringExtra("content") ?: ""
                 val hide = data?.getBooleanExtra("hide", false) ?: false
+                val position = data?.getIntExtra("position", -1) ?: -1
 
-                val finalTitle = if (hide) "Hidden Note" else title
-                val finalContent = if (hide) "******" else content
+                val note = Note(title, content)
 
-                // Tambahkan ke list
-                notes.add(0, Note(finalTitle, finalContent))
+                // ===============================
+                // EDIT MODE
+                // ===============================
+                if (position != -1) {
+                    notes[position] = note
+                    NotesStorage.saveNotes(requireContext(), notes)
+                    adapter.notifyItemChanged(position)
+                    return@registerForActivityResult
+                }
 
-                // Simpan ke SharedPreferences
-                NotesStorage.saveNotes(requireContext(), notes)
-
-                adapter.notifyItemInserted(0)
+                // ===============================
+                // NEW NOTE MODE
+                // ===============================
+                if (hide) {
+                    val privateNotes = NotesStorage.loadPrivateNotes(requireContext())
+                    privateNotes.add(0, note)
+                    NotesStorage.savePrivateNotes(requireContext(), privateNotes)
+                } else {
+                    notes.add(0, note)
+                    NotesStorage.saveNotes(requireContext(), notes)
+                    adapter.notifyItemInserted(0)
+                }
             }
         }
 
@@ -58,28 +73,29 @@ class NotesFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Load sekali saja
         notes = NotesStorage.loadNotes(requireContext())
-
         setupRecycler()
         setupFab()
     }
 
-
     private fun setupRecycler() {
-        adapter = NotesAdapter(notes, requireContext())
+        adapter = NotesAdapter(notes, requireContext()) { note, position ->
+            val intent = Intent(requireContext(), WriteActivity::class.java)
+            intent.putExtra("title", note.title)
+            intent.putExtra("content", note.content)
+            intent.putExtra("position", position)
+            WriteActivityResult.launch(intent)
+        }
+
         binding.rvNotes.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvNotes.adapter = adapter
     }
 
     private fun setupFab() {
-        binding.fabAdd.setOnClickListener {
-            showAddPopup()
-        }
+        binding.fabAdd.setOnClickListener { showAddPopup() }
     }
 
     private fun showAddPopup() {
@@ -110,24 +126,12 @@ class NotesFragment : Fragment() {
             val intent = Intent(requireContext(), WriteActivity::class.java)
             intent.putExtra("title", title)
             intent.putExtra("hide", cbHide.isChecked)
-
             WriteActivityResult.launch(intent)
+
             dialog.dismiss()
         }
 
         dialog.show()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // Update tampilan setelah kembali dari WriteActivity
-        val savedNotes = NotesStorage.loadNotes(requireContext())
-        if (savedNotes.size != notes.size) {
-            notes.clear()
-            notes.addAll(savedNotes)
-            adapter.notifyDataSetChanged()
-        }
     }
 
     override fun onDestroyView() {

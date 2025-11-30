@@ -1,7 +1,9 @@
 package com.example.cp.adapter
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cp.Note
 import com.example.cp.NotesStorage
 import com.example.cp.R
+import com.example.cp.WriteActivity
 
-class NotesAdapter(private val notes: MutableList<Note>, private val context: Context) :
-    RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
+class NotesAdapter(
+    private val notes: MutableList<Note>,
+    private val context: Context,
+    private val onNoteClick: (Note, Int) -> Unit
+) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>()
+ {
 
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
@@ -43,6 +50,14 @@ class NotesAdapter(private val notes: MutableList<Note>, private val context: Co
                 }
                 true
             }
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onNoteClick(notes[position], position)
+                }
+            }
+
+
         }
     }
 
