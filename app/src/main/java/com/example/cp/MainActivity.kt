@@ -18,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
+    private var lastSelectedTab = R.id.notesFragment   // ⭐ TAB TERAKHIR
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,12 +37,15 @@ class MainActivity : AppCompatActivity() {
         // LISTENER NAVBAR (PRIVATE → PIN)
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
+
+                // ⭐ Jika klik Private Notes → tampilkan PIN dialog
                 R.id.privateFragment -> {
                     showPinDialog()
-                    return@setOnItemSelectedListener true
+                    return@setOnItemSelectedListener true  // ⭐ AGAR TIDAK TERHIGHLIGHT
                 }
 
                 else -> {
+                    lastSelectedTab = item.itemId     // ⭐ SIMPAN TAB TERAKHIR
                     navController.navigate(item.itemId)
                     return@setOnItemSelectedListener true
                 }
@@ -74,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                         inputs[index + 1].requestFocus()
                     }
                 }
-
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             })
@@ -83,13 +87,16 @@ class MainActivity : AppCompatActivity() {
         // Cancel
         dialogView.findViewById<Button>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
+
+            // ⭐ KEMBALIKAN TAB KE YANG TERAKHIR SEBELUM PRIVATE
+            val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+            bottomNav.selectedItemId = lastSelectedTab
         }
 
         // Verification
         dialogView.findViewById<Button>(R.id.btnVerify).setOnClickListener {
             val pin = inputs.joinToString("") { it.text.toString() }
 
-            // 3 PIN valid
             val validPins = listOf("1234", "5678", "9999")
 
             if (pin in validPins) {
@@ -108,12 +115,12 @@ class MainActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
         dialog.window?.setGravity(Gravity.CENTER)
-        // suapaya rapi
+
+        // supaya rapi
         inputs.forEach { edit ->
             edit.setBackgroundResource(R.drawable.pin_box_selector)
             edit.setTextColor(android.graphics.Color.BLACK)
             edit.textSize = 24f
         }
-
     }
 }

@@ -20,7 +20,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".LogoActivity"
