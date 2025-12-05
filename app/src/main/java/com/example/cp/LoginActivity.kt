@@ -9,11 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity() {
 
-    // Daftar user dan password yang diperbolehkan
     private val validUsers = mapOf(
-        "aditya" to "123",
-        "yumna" to "111",
-        "raka" to "999",
+        "Yumna" to "111"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,16 +26,15 @@ class LoginActivity : AppCompatActivity() {
             val username = etName.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
-            // Cek kosong
             if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Nama atau password belum diisi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    "Nama atau password belum diisi",
+                    Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Cek apakah username ada dan password benar
             if (validUsers[username] == password) {
 
-                // SIMPAN DATA LOGIN KE SHAREDPREFERENCES
                 val sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
                 sharedPref.edit().apply {
                     putString("USERNAME", username)
@@ -46,7 +42,6 @@ class LoginActivity : AppCompatActivity() {
                     apply()
                 }
 
-                // Pindah ke MainActivity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
 
@@ -54,8 +49,10 @@ class LoginActivity : AppCompatActivity() {
                 finish()
 
             } else {
-                Toast.makeText(this, "Username atau password salah", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    "Username atau password salah",
+                    Toast.LENGTH_SHORT).show()
             }
-        }   // ⬅️ ini penutup btnLogin.setOnClickListener
-    }       // ⬅️ ini penutup onCreate
-}           // ⬅️ ini penutup class
+        }
+    }
+}

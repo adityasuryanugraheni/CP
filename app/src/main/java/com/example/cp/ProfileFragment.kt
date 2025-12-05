@@ -17,37 +17,25 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile,
+            container,
+            false)
 
-        // =============================
-        // 1. AMBIL DATA DARI SHAREDPREF
-        // =============================
         val sharedPref = requireContext().getSharedPreferences("UserSession", 0)
         val username = sharedPref.getString("USERNAME", "")
         val password = sharedPref.getString("PASSWORD", "")
 
-        // =============================
-        // 2. TEMUKAN EDITTEXT DI XML
-        // =============================
         val edtName = view.findViewById<EditText>(R.id.edtName)
         val edtPassword = view.findViewById<EditText>(R.id.edtPassword)
 
-        // =============================
-        // 3. MASUKKAN DATA KE EDITTEXT
-        // =============================
         edtName.setText(username)
         edtPassword.setText(password)
 
-        // =============================
-        // 4. LOGOUT
-        // =============================
         val btnLogout = view.findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {
 
-            // HAPUS SESSION LOGIN
             sharedPref.edit().clear().apply()
 
-            // Pindah ke LoginActivity
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()

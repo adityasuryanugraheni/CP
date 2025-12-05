@@ -17,15 +17,13 @@ class LogoActivity : AppCompatActivity() {
 
         val logo = findViewById<ImageView>(R.id.logoImage)
 
-        // Animasi logo sedikit naik + fade in
         logo.animate()
             .translationY(-120f)
             .alpha(1f)
             .setDuration(1200)
-            .setInterpolator(AccelerateDecelerateInterpolator()) // lebih smooth
+            .setInterpolator(AccelerateDecelerateInterpolator())
             .start()
 
-        // Pindah halaman dengan shared element transition
         Handler(Looper.getMainLooper()).postDelayed({
 
             val intent = Intent(this, LoginActivity::class.java)
@@ -33,7 +31,7 @@ class LogoActivity : AppCompatActivity() {
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 logo,
-                "app_logo" // pastikan sama di LoginActivity
+                "app_logo"
             )
 
             startActivity(intent, options.toBundle())

@@ -7,7 +7,6 @@
     android:gravity="center_horizontal"
     android:background="@drawable/bg_profile">
 
-    <!-- Profile Image -->
     <ImageView
         android:id="@+id/imgProfile"
         android:layout_width="150dp"
@@ -16,7 +15,6 @@
         android:src="@drawable/profilketiga"
         android:contentDescription="profile" />
 
-    <!-- PROFILE TEXT -->
     <TextView
         android:id="@+id/txtProfile"
         android:layout_width="wrap_content"
@@ -57,7 +55,6 @@
         android:cursorVisible="false"
         android:longClickable="false" />
 
-    <!-- Logout Button -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="300dp"
@@ -67,7 +64,6 @@
         android:textColor="#FFFFFF"
         android:backgroundTint="#FF0000"/>
 
-    <!-- Space before nav -->
     <Space
         android:layout_width="0dp"
         android:layout_height="50dp"/>
