@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         dialogView.findViewById<Button>(R.id.btnVerify).setOnClickListener {
             val pin = inputs.joinToString("") { it.text.toString() }
 
-            val validPins = listOf("1234", "5678", "9999")
+            val validPins = listOf("9999")
 
             if (pin in validPins) {
                 findNavController(R.id.fragmentContainerView).navigate(R.id.privateFragment)
