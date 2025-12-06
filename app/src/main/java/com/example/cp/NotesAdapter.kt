@@ -29,11 +29,10 @@ class NotesAdapter(
             tvTitle.text = note.title
             tvContent.text = note.content
 
-            // Long click untuk hapus
             itemView.setOnLongClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    // Konfirmasi hapus
+
                     AlertDialog.Builder(context)
                         .setTitle("Delete Note")
                         .setMessage("Are you sure you want to delete this note?")
@@ -42,7 +41,6 @@ class NotesAdapter(
                             notes.removeAt(position)
                             notifyItemRemoved(position)
 
-                            // Simpan perubahan ke SharedPreferences
                             NotesStorage.saveNotes(context, notes)
                         }
                         .setNegativeButton("No", null)

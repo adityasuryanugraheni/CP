@@ -15,17 +15,14 @@ class WriteActivity : AppCompatActivity() {
         binding = ActivityWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Terima data dari NotesFragment
         val initialTitle = intent.getStringExtra("title") ?: ""
         val initialContent = intent.getStringExtra("content") ?: ""
         val hide = intent.getBooleanExtra("hide", false)
         val position = intent.getIntExtra("position", -1)
 
-        // Set ke EditText (edit mode)
         binding.etTitle.setText(initialTitle)
         binding.etContent.setText(initialContent)
 
-        // Tombol Back
         binding.btnBack.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)
             finish()
@@ -45,7 +42,6 @@ class WriteActivity : AppCompatActivity() {
                 putExtra("content", content)
                 putExtra("hide", hide)
 
-                // Kembalikan posisi jika edit
                 if (position != -1) {
                     putExtra("position", position)
                 }
