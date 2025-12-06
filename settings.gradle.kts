@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CP"
+rootProject.name = "ClipNote"
 include(":app")
  

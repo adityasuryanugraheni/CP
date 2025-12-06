@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -34,23 +35,26 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.fragmentContainerView)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
-        // LISTENER NAVBAR (PRIVATE → PIN)
+// Sinkronkan navcontroller ↔ navbar
+        bottomNav.setupWithNavController(navController)
+
+// Override behavior khusus Private Notes
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
-                // ⭐ Jika klik Private Notes → tampilkan PIN dialog
                 R.id.privateFragment -> {
                     showPinDialog()
-                    return@setOnItemSelectedListener true  // ⭐ AGAR TIDAK TERHIGHLIGHT
+                    return@setOnItemSelectedListener false   // ⭐ jangan pindah dulu
                 }
 
                 else -> {
-                    lastSelectedTab = item.itemId     // ⭐ SIMPAN TAB TERAKHIR
+                    lastSelectedTab = item.itemId
                     navController.navigate(item.itemId)
                     return@setOnItemSelectedListener true
                 }
             }
         }
+
     }
 
     // =====================================
