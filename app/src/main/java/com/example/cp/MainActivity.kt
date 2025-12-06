@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.privateFragment -> {
                     showPinDialog()
-                    return@setOnItemSelectedListener false   // ⭐ jangan pindah dulu
+                    return@setOnItemSelectedListener false
                 }
 
                 else -> {
