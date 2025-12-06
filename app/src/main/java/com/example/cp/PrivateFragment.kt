@@ -61,7 +61,7 @@ class PrivateFragment : Fragment() {
             intent.putExtra("title", note.title)
             intent.putExtra("content", note.content)
             intent.putExtra("position", position)
-            intent.putExtra("hide", true) // PRIVATE NOTE = always hidden
+            intent.putExtra("hide", true)
 
             privateWriteActivityResult.launch(intent)
         }
@@ -81,7 +81,6 @@ class PrivateFragment : Fragment() {
             adapter.notifyDataSetChanged()
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
