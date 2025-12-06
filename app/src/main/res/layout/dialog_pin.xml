@@ -15,7 +15,6 @@
         android:textColor="#5E4B8C"
         android:paddingBottom="18dp"/>
 
-    <!-- PIN BOXES -->
     <LinearLayout
         android:orientation="horizontal"
         android:gravity="center"
@@ -71,7 +70,6 @@
             android:background="@drawable/pin_box_selector"/>
     </LinearLayout>
 
-    <!-- BUTTON ROW -->
     <LinearLayout
         android:orientation="horizontal"
         android:gravity="center"
