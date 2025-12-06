@@ -31,27 +31,19 @@ class PrivateAdapter(
         holder.binding.PrivateTitle.text = item.title
         holder.binding.PrivateDesc.text = item.content
 
-        // ================================
-        //  CLICK → EDIT PRIVATE NOTE
-        // ================================
         holder.binding.root.setOnClickListener {
             onClick(item, position)
         }
 
-        // ================================
-        //  LONG CLICK → DELETE PRIVATE NOTE
-        // ================================
         holder.binding.root.setOnLongClickListener {
             AlertDialog.Builder(context)
                 .setTitle("Delete Private Note")
                 .setMessage("Are you sure you want to delete this private note?")
                 .setPositiveButton("Yes") { _, _ ->
 
-                    // Hapus dari list
                     list.removeAt(position)
                     notifyItemRemoved(position)
 
-                    // Simpan perubahan
                     NotesStorage.savePrivateNotes(context, list)
                 }
                 .setNegativeButton("No", null)

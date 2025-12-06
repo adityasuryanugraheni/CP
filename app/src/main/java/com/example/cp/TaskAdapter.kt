@@ -27,13 +27,11 @@ class TaskAdapter(
         holder.binding.tvTask.text = item.text
         holder.binding.cbDone.isChecked = item.checked
 
-        // Checklist perubahan
         holder.binding.cbDone.setOnCheckedChangeListener { _, isChecked ->
             list[holder.adapterPosition].checked = isChecked
             onUpdate(list)
         }
 
-        // Tekan lama untuk hapus
         holder.itemView.setOnLongClickListener {
             val context = holder.itemView.context
 
@@ -56,9 +54,6 @@ class TaskAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    // ============================
-    // FUNGSI YANG DICARI (addTask)
-    // ============================
     fun addTask(text: String) {
         list.add(0, TaskModel(text, false))
         notifyItemInserted(0)

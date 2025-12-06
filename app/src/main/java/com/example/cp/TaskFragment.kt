@@ -25,7 +25,6 @@ class TaskFragment : Fragment() {
 
         binding = FragmentTaskBinding.inflate(inflater, container, false)
 
-        // Load dari SharedPreferences
         taskList = loadTasks()
 
         adapter = TaskAdapter(taskList) { updatedList ->
@@ -35,7 +34,6 @@ class TaskFragment : Fragment() {
         binding.recyclerNotes.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerNotes.adapter = adapter
 
-        // Tambah task saat tombol DONE ditekan
         binding.etInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
 
@@ -52,8 +50,6 @@ class TaskFragment : Fragment() {
 
         return binding.root
     }
-
-    // -------- Simpan List ke SharedPreferences --------
 
     private fun saveTasks(list: MutableList<TaskModel>) {
         val prefs = requireContext().getSharedPreferences("task_prefs", Context.MODE_PRIVATE)

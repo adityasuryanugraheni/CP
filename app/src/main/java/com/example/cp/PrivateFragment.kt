@@ -19,9 +19,6 @@ class PrivateFragment : Fragment() {
     private lateinit var adapter: PrivateAdapter
     private var privateNotes = mutableListOf<Note>()
 
-    // =====================================
-    //  RECEIVE RESULT FROM WriteActivity
-    // =====================================
     private val privateWriteActivityResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
@@ -34,9 +31,6 @@ class PrivateFragment : Fragment() {
 
                 val updatedNote = Note(title, content)
 
-                // ===========================
-                // EDIT EXISTING PRIVATE NOTE
-                // ===========================
                 if (position != -1) {
                     privateNotes[position] = updatedNote
                     NotesStorage.savePrivateNotes(requireContext(), privateNotes)
