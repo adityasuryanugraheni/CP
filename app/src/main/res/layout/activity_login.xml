@@ -24,19 +24,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LOGIN"
+            android:text="MASUK"
             android:textSize="30sp"
             android:textStyle="bold"
             android:layout_marginTop="70dp"
             android:textColor="#19376D">
         </TextView>
 
-
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Name"
+            android:hint="Nama"
             android:padding="12dp"
             android:background="@drawable/rounded_edittext"
             android:layout_marginTop="25dp"
@@ -48,7 +47,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Password"
+            android:hint="Kata Sandi"
             android:padding="12dp"
             android:inputType="textPassword"
             android:background="@drawable/rounded_edittext"
@@ -61,7 +60,7 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="Login"
+            android:text="Masuk"
             android:textAllCaps="false"
             android:backgroundTint="#1A73E8"
             android:textColor="#FFFFFF"
