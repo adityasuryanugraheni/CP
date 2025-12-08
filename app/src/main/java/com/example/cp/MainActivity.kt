@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun showPinDialog() {

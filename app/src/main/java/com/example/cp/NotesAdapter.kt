@@ -37,7 +37,7 @@ class NotesAdapter(
                         .setTitle("Delete Note")
                         .setMessage("Are you sure you want to delete this note?")
                         .setPositiveButton("Yes") { _, _ ->
-                            // Hapus dari list
+
                             notes.removeAt(position)
                             notifyItemRemoved(position)
 
