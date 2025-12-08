@@ -97,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                 findNavController(R.id.fragmentContainerView).navigate(R.id.privateFragment)
                 dialog.dismiss()
             } else {
+
                 Toast.makeText(this, "WRONG PIN!", Toast.LENGTH_SHORT).show()
             }
         }
