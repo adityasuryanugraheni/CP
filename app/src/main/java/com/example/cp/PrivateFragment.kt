@@ -69,20 +69,4 @@ class PrivateFragment : Fragment() {
         binding.rvPrivate.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvPrivate.adapter = adapter
     }
-
-    override fun onResume() {
-        super.onResume()
-
-        val savedPrivate = NotesStorage.loadPrivateNotes(requireContext())
-
-        if (savedPrivate.size != privateNotes.size) {
-            privateNotes.clear()
-            privateNotes.addAll(savedPrivate)
-            adapter.notifyDataSetChanged()
-        }
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
