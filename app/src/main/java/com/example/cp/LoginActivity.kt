@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this,
-                    "Nama atau password belum diisi",
+                    "Name or password is not filled in",
                     Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -45,12 +45,12 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
 
-                Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "login successful", Toast.LENGTH_SHORT).show()
                 finish()
 
             } else {
                 Toast.makeText(this,
-                    "Username atau password salah",
+                    "Incorrect username or password",
                     Toast.LENGTH_SHORT).show()
             }
         }
