@@ -31,7 +31,6 @@
             android:textColor="#19376D">
         </TextView>
 
-
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
