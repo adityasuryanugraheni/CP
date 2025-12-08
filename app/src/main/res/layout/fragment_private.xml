@@ -8,7 +8,6 @@
     android:background="@drawable/bg_gradient"
     tools:context=".PrivateFragment">
 
-    <!-- LOGO -->
     <ImageView
         android:id="@+id/logoremove"
         android:layout_width="150dp"
@@ -20,7 +19,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <!-- RECYCLER VIEW -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPrivate"
         android:layout_width="0dp"

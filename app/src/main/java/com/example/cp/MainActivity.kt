@@ -14,11 +14,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private var lastSelectedTab = R.id.notesFragment   // ⭐ TAB TERAKHIR
+    private var lastSelectedTab = R.id.notesFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,18 +35,18 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.fragmentContainerView)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
-        // LISTENER NAVBAR (PRIVATE → PIN)
+        bottomNav.setupWithNavController(navController)
+
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
-                // ⭐ Jika klik Private Notes → tampilkan PIN dialog
                 R.id.privateFragment -> {
                     showPinDialog()
-                    return@setOnItemSelectedListener true  // ⭐ AGAR TIDAK TERHIGHLIGHT
+                    return@setOnItemSelectedListener false
                 }
 
                 else -> {
-                    lastSelectedTab = item.itemId     // ⭐ SIMPAN TAB TERAKHIR
+                    lastSelectedTab = item.itemId
                     navController.navigate(item.itemId)
                     return@setOnItemSelectedListener true
                 }
@@ -53,9 +54,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // =====================================
-    //               POPUP PIN
-    // =====================================
     private fun showPinDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_pin, null)
 
@@ -71,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(true)
             .create()
 
-        // Auto move ke kotak berikutnya
         inputs.forEachIndexed { index, editText ->
             editText.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
@@ -84,16 +81,13 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-        // Cancel
         dialogView.findViewById<Button>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
 
-            // ⭐ KEMBALIKAN TAB KE YANG TERAKHIR SEBELUM PRIVATE
             val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
             bottomNav.selectedItemId = lastSelectedTab
         }
 
-        // Verification
         dialogView.findViewById<Button>(R.id.btnVerify).setOnClickListener {
             val pin = inputs.joinToString("") { it.text.toString() }
 
@@ -109,14 +103,12 @@ class MainActivity : AppCompatActivity() {
 
         dialog.show()
 
-        // AGAR DITENGAH
         dialog.window?.setLayout(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
         dialog.window?.setGravity(Gravity.CENTER)
 
-        // supaya rapi
         inputs.forEach { edit ->
             edit.setBackgroundResource(R.drawable.pin_box_selector)
             edit.setTextColor(android.graphics.Color.BLACK)

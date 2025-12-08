@@ -27,7 +27,6 @@ class NotesFragment : Fragment() {
     private lateinit var adapter: NotesAdapter
     private var notes = mutableListOf<Note>()
 
-    // menerima hasil dari WriteActivity
     private val WriteActivityResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -40,9 +39,6 @@ class NotesFragment : Fragment() {
 
                 val note = Note(title, content)
 
-                // ===============================
-                // EDIT MODE
-                // ===============================
                 if (position != -1) {
                     notes[position] = note
                     NotesStorage.saveNotes(requireContext(), notes)
@@ -50,9 +46,6 @@ class NotesFragment : Fragment() {
                     return@registerForActivityResult
                 }
 
-                // ===============================
-                // NEW NOTE MODE
-                // ===============================
                 if (hide) {
                     val privateNotes = NotesStorage.loadPrivateNotes(requireContext())
                     privateNotes.add(0, note)

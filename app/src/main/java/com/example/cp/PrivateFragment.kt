@@ -19,9 +19,6 @@ class PrivateFragment : Fragment() {
     private lateinit var adapter: PrivateAdapter
     private var privateNotes = mutableListOf<Note>()
 
-    // =====================================
-    //  RECEIVE RESULT FROM WriteActivity
-    // =====================================
     private val privateWriteActivityResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
@@ -34,9 +31,6 @@ class PrivateFragment : Fragment() {
 
                 val updatedNote = Note(title, content)
 
-                // ===========================
-                // EDIT EXISTING PRIVATE NOTE
-                // ===========================
                 if (position != -1) {
                     privateNotes[position] = updatedNote
                     NotesStorage.savePrivateNotes(requireContext(), privateNotes)
@@ -67,7 +61,7 @@ class PrivateFragment : Fragment() {
             intent.putExtra("title", note.title)
             intent.putExtra("content", note.content)
             intent.putExtra("position", position)
-            intent.putExtra("hide", true) // PRIVATE NOTE = always hidden
+            intent.putExtra("hide", true)
 
             privateWriteActivityResult.launch(intent)
         }
@@ -87,7 +81,6 @@ class PrivateFragment : Fragment() {
             adapter.notifyDataSetChanged()
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -22,7 +22,6 @@ object NotesStorage {
         return Gson().fromJson(json, object : TypeToken<MutableList<Note>>(){}.type)
     }
 
-    // 🔐 PRIVATE NOTES
     fun savePrivateNotes(context: Context, notes: List<Note>) {
         val json = Gson().toJson(notes)
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
